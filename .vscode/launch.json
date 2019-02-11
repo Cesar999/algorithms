@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "C://TekMexico//Algorithms//graph//graph_ex2.js"
+            "program": "C:/TekMexico/Algorithms/sorting/bubbleSort2.js"
         }
     ]
 }

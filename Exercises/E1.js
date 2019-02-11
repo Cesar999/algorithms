@@ -1,4 +1,4 @@
-const Queue = require('./queue');
+const Queue = require('../datastructures/queue');
 
 class Node {
     constructor(value){
@@ -40,25 +40,27 @@ class BinarySearchTree {
         }
     }
 
-    find(value){
-        if(this.root === null){
-            return null;
-        }
-        let current = this.root;
-        let found = false;
-        while(current && !found){
-            if(value < current.value){
-                current = current.left;
-            } else if(value > current.value){
-                current = current.right;
+    bfs(opt=true){
+        let data = [];
+        let queue = new Queue();
+        let node = this.root;
+        queue.enqueue(node);
+        while(!queue.isEmpty()){
+            node = queue.dequeue();
+            if(node!==null){
+                data.push(node.value);
+                if(node.left){queue.enqueue(node.left);}
+                else {queue.enqueue(null);}
+                if(node.right){queue.enqueue(node.right);}
+                else {queue.enqueue(null);}
             } else {
-                found = true;
+                data.push(null);
             }
         }
-        if(found){
-            console.log(current);
+        if(opt){
+            return data.slice(0,data.length/2);
         } else {
-            console.log('Not Found');
+            return data;
         }
     }
 
@@ -86,50 +88,7 @@ class BinarySearchTree {
       }
     }
 
-    bfs(opt=true){
-        let data = [];
-        let queue = new Queue();
-        let node = this.root;
-        queue.enqueue(node);
-        while(!queue.isEmpty()){
-            node = queue.dequeue();
-            if(node!==null){
-                data.push(node.value);
-                if(node.left){queue.enqueue(node.left);}
-                else {queue.enqueue(null);}
-                if(node.right){queue.enqueue(node.right);}
-                else {queue.enqueue(null);}
-            } else {
-                data.push(null);
-            }
-        }
-        if(opt){
-            return data.slice(0,data.length/2);
-        } else {
-            return data;
-        }
-    }
 
-    dfs(opt='inOrder'){
-        const data = [];
-        function traverse(node){
-            if(opt==='preOrder'){
-                data.push(node.value);
-                if(node.left){traverse(node.left);}
-                if(node.right){traverse(node.right);}
-            } else if(opt==='postOrder'){
-                if(node.left){traverse(node.left);}
-                if(node.right){traverse(node.right);}
-                data.push(node.value);
-            } else {
-                if(node.left){traverse(node.left);}
-                data.push(node.value);
-                if(node.right){traverse(node.right);} 
-            }
-        }
-        traverse(this.root);
-        return data;
-    }
 }
 
 const tree = new BinarySearchTree();
@@ -148,10 +107,5 @@ tree.insert(23);
 tree.insert(25);
 tree.insert(19);
 tree.insert(21);
-
-console.log(tree.bfs(),'bfs');
-console.log(tree.dfs('preOrder'),'preOrder dfs');
-console.log(tree.dfs('postOrder'),'postOrder dfs');
-console.log(tree.dfs('inOrder'),'inOrder dfs');
 tree.print();
 

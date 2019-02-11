@@ -71,5 +71,13 @@ class Node {
 let q = new PriorityQueue();
 q.enqueue("LOW",1);
 q.enqueue("HIGH",5);
-q.enqueue("MEDIUM",2);
+q.enqueue("MEDIUM",3);
+q.enqueue("LOW2",2);
+q.enqueue("HIGH2",6);
+q.enqueue("MEDIUM2",4);
+q.dequeueMax();
+q.dequeueMax();
+q.dequeueMax();
+q.dequeueMax();
+q.dequeueMax();
 q.dequeueMax();
