@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .block1{
+              border: 40px solid red;  
+            }
+            .block2{
+              border: 40px solid blue;  
+            }
+            .block3{
+              border: 40px solid green;  
+            }
+            .block4{
+              border: 40px solid yellow;  
+            }
+        </style>
+    </head>
+    <body>
+        <div class="block1">
+            <div class="block2">
+                <div class="block3">
+                    <div class="block4">
+                        Blocks
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const block4 = document.querySelector('.block4');
+            block4.addEventListener('click',function(e){
+                //e.stopPropagation();
+                console.log(e.currentTarget)},false);
+
+            const block3 = document.querySelector('.block3');
+            block3.addEventListener('click',function(e){console.log(e.currentTarget)},false);
+
+            const block2 = document.querySelector('.block2');
+            block2.addEventListener('click',function(e){console.log(e.currentTarget)},false);
+
+            const block1 = document.querySelector('.block1');
+            block1.addEventListener('click',function(e){console.log(e.currentTarget)},false);
+        </script>
+    </body>
+</html>
